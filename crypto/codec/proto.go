@@ -29,6 +29,8 @@ func RegisterInterfaces(registry codectypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*cryptotypes.PubKey)(nil), &multisig.LegacyAminoPubKey{})
 }
 
+// PubKeyToProto takes a crypto.Pubkey and sets it into tendermint's public key oneof
+// This is only used when sending information about validators to Tendermint (validator updates)
 func PubKeyToProto(k tmcrypto.PubKey) (protocrypto.PublicKey, error) {
 	var kp protocrypto.PublicKey
 	switch k := k.(type) {
