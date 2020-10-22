@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/tendermint/tendermint/crypto"
-	tmed25519 "github.com/tendermint/tendermint/crypto/ed25519"
 	yaml "gopkg.in/yaml.v2"
 
 	"github.com/cosmos/cosmos-sdk/codec/legacy"
@@ -679,12 +678,6 @@ func GetPubKeyFromBech32(pkt Bech32PubKeyType, pubkeyStr string) (crypto.PubKey,
 		protoPk = aminoPk
 	case *ed25519.PubKey:
 		protoPk = aminoPk
-
-	// Real-life case.
-	case tmed25519.PubKey:
-		protoPk = &ed25519.PubKey{
-			Key: aminoPk.Bytes(),
-		}
 
 	default:
 		// We only allow ed25519 pubkeys to be bech32-ed right now.
