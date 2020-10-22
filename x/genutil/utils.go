@@ -70,7 +70,7 @@ func InitializeNodeValidatorFiles(config *cfg.Config) (nodeID string, valPubKey 
 		return "", nil, err
 	}
 
-	valPubKey, err = ed25519.FromTmEd25519(tmValPubKey)
+	valPubKey, err = ed25519.FromTmEd25519(tmValPubKey) //todo: figure out what to do here
 	if err != nil {
 		return "", nil, err
 	}
